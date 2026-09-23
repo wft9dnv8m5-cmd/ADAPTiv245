@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Tailwind CSS (для классической, ровной сетки) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,7 +18,7 @@
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'], },
                     colors: {
-                        primary: '#2563eb', // Классический синий
+                        primary: '#2563eb', 
                         secondary: '#1e40af',
                     }
                 }
@@ -26,7 +26,6 @@
         }
     </script>
     <style>
-        /* Базовые стили для плавности и красоты */
         body { font-family: 'Inter', sans-serif; color: #1f2937; }
         .hero-pattern {
             background-color: #f8fafc;
@@ -38,6 +37,14 @@
             backdrop-filter: blur(8px);
             border-bottom: 1px solid #e5e7eb;
         }
+        /* Анимация медленного вращения для печати (опционально, выглядит стильно) */
+        .seal-spin {
+            animation: spin 30s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 antialiased">
@@ -46,22 +53,17 @@
     <header class="fixed top-0 w-full z-50 glass-header transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Логотип -->
                 <a href="#" class="flex items-center gap-2 text-2xl font-bold text-gray-900">
                     <i class="fa-solid fa-layer-group text-primary"></i>
                     ADAPT<span class="text-primary">iv</span>
                 </a>
-                
-                <!-- Меню -->
                 <nav class="hidden md:flex space-x-8">
                     <a href="#about" class="text-gray-600 hover:text-primary font-medium transition">О нас</a>
                     <a href="#process" class="text-gray-600 hover:text-primary font-medium transition">Процесс</a>
                     <a href="#case" class="text-gray-600 hover:text-primary font-medium transition">Кейс StaroSTATT</a>
                 </nav>
-
-                <!-- Кнопка -->
-                <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-secondary transition shadow-sm">
-                    Связаться
+                <a href="#demo" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-secondary transition shadow-sm">
+                    Смотреть демо
                 </a>
             </div>
         </div>
@@ -78,34 +80,31 @@
                 Мы находим "узкие горлышки" в ваших бизнес-процессах и создаем кастомные веб-приложения, которые экономят десятки часов рабочего времени.
             </p>
             <div class="flex justify-center gap-4">
-                <a href="#contact" class="px-8 py-4 text-lg font-medium rounded-lg text-white bg-primary hover:bg-secondary transition shadow-lg hover:shadow-xl">
-                    Начать проект
+                <a href="#demo" class="px-8 py-4 text-lg font-medium rounded-lg text-white bg-primary hover:bg-secondary transition shadow-lg hover:shadow-xl">
+                    Посмотреть демо проекта
                 </a>
                 <a href="#case" class="px-8 py-4 text-lg font-medium rounded-lg text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition shadow-sm">
-                    Смотреть кейс
+                    Читать кейс
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Блок процесса (Как мы работаем) -->
+    <!-- Блок процесса -->
     <section id="process" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Как мы создаем решения</h2>
                 <p class="text-lg text-gray-500 max-w-2xl mx-auto">Понятный и прозрачный процесс от идеи до работающего продукта.</p>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-10">
-                <!-- Карточка 1 -->
                 <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
                     <div class="w-14 h-14 bg-blue-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6">
                         <i class="fa-solid fa-clipboard-list"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">1. Анализ и Бриф</h3>
-                    <p class="text-gray-600">Вы заполняете форму, описывая задачи, отнимающие время. Мы проводим продуктовый анализ и предлагаем концепцию.</p>
+                    <p class="text-gray-600">Вы описываете задачи, отнимающие время. Мы проводим продуктовый анализ и предлагаем логику приложения.</p>
                 </div>
-                <!-- Карточка 2 -->
                 <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
                     <div class="w-14 h-14 bg-blue-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6">
                         <i class="fa-solid fa-code"></i>
@@ -113,7 +112,6 @@
                     <h3 class="text-xl font-bold text-gray-900 mb-3">2. Разработка</h3>
                     <p class="text-gray-600">Пишем чистый код и создаем интуитивный интерфейс. Без шаблонов — только индивидуальная разработка под вас.</p>
                 </div>
-                <!-- Карточка 3 -->
                 <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-md transition">
                     <div class="w-14 h-14 bg-blue-100 text-primary rounded-xl flex items-center justify-center text-2xl mb-6">
                         <i class="fa-solid fa-rocket"></i>
@@ -125,11 +123,10 @@
         </div>
     </section>
 
-    <!-- Блок Кейса (StaroSTATT) -->
+    <!-- Блок Кейса -->
     <section id="case" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row">
-                <!-- Текстовая часть -->
                 <div class="p-10 lg:p-16 lg:w-1/2 flex flex-col justify-center">
                     <div class="uppercase tracking-wide text-sm text-primary font-bold mb-2">Кейс из практики</div>
                     <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Проект StaroSTATT</h2>
@@ -147,30 +144,19 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-600">Выгрузка готовых CSV-отчетов для деканата.</span>
+                            <span class="text-gray-600">Выгрузка готовых CSV-отчетов.</span>
                         </li>
                     </ul>
-                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-gray-100">
-                        <div>
-                            <div class="text-3xl font-bold text-primary">360+</div>
-                            <div class="text-sm text-gray-500 mt-1">Пользователей</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-primary">~20ч</div>
-                            <div class="text-sm text-gray-500 mt-1">Экономии в месяц</div>
-                        </div>
-                    </div>
                 </div>
-                <!-- Декоративная часть (вместо фото) -->
                 <div class="bg-slate-900 lg:w-1/2 p-10 flex items-center justify-center relative overflow-hidden">
                     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-400 via-transparent to-transparent"></div>
                     <div class="relative z-10 text-center">
                         <i class="fa-solid fa-laptop-code text-7xl text-blue-400 mb-6"></i>
                         <h3 class="text-2xl font-bold text-white mb-2">Технологии:</h3>
                         <div class="flex flex-wrap justify-center gap-3 mt-4">
-                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-blue-300 text-sm font-medium">JavaScript</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-blue-300 text-sm font-medium">JavaScript ES6+</span>
                             <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-blue-300 text-sm font-medium">HTML/CSS</span>
-                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-blue-300 text-sm font-medium">Firebase</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-blue-300 text-sm font-medium">Firebase Database</span>
                         </div>
                     </div>
                 </div>
@@ -178,86 +164,91 @@
         </div>
     </section>
 
-    <!-- Блок Сравнения (Таблица) -->
-    <section class="py-20 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Почему мы, а не конструкторы?</h2>
-            
-            <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-                <table class="w-full text-left text-gray-600">
-                    <thead class="bg-gray-50 text-gray-900 uppercase text-sm font-semibold">
-                        <tr>
-                            <th class="p-5 border-b border-gray-200">Критерий</th>
-                            <th class="p-5 border-b border-gray-200 bg-blue-50 text-primary">ADAPTiv (Кастом)</th>
-                            <th class="p-5 border-b border-gray-200">Готовые CRM</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-5 font-medium text-gray-900">Погружение в процессы</td>
-                            <td class="p-5 bg-blue-50/50">Глубокое (через бриф)</td>
-                            <td class="p-5">Отсутствует</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-5 font-medium text-gray-900">Индивидуальность логики</td>
-                            <td class="p-5 bg-blue-50/50 text-green-600 font-medium">100% под вас</td>
-                            <td class="p-5">Ограничена шаблоном</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-5 font-medium text-gray-900">UX / Удобство интерфейса</td>
-                            <td class="p-5 bg-blue-50/50">Интуитивно, нет ничего лишнего</td>
-                            <td class="p-5">Перегружено кнопками</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Контакты / QR Код (CTA Section) -->
-    <section id="contact" class="py-24 bg-slate-900 text-white">
+    <!-- Демо проекта / QR Код (CTA) -->
+    <section id="demo" class="py-24 bg-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between bg-slate-800 rounded-3xl p-10 md:p-16 shadow-2xl border border-slate-700">
-                
-                <!-- Текст призыва к действию -->
                 <div class="md:w-3/5 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Готовы оцифровать <span class="text-blue-400">свою рутину?</span></h2>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Посмотрите систему <span class="text-blue-400">в действии</span></h2>
                     <p class="text-lg text-slate-300 mb-8">
-                        Отсканируйте QR-код, чтобы пройти короткий бриф-опрос. Мы проанализируем ваши процессы и предложим бесплатный концепт решения.
+                        Отсканируйте QR-код, чтобы открыть рабочую версию проекта <strong>StaroSTATT</strong>. Оцените интерфейс, скорость отклика и логику, которую мы разработали для реальных пользователей.
                     </p>
                     <ul class="space-y-3 text-slate-300 font-medium mb-8">
-                        <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Бесплатный аудит</li>
-                        <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Точная оценка сроков</li>
-                        <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Никаких навязчивых звонков</li>
+                        <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Живое демо без сложной регистрации</li>
+                        <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Современный адаптивный дизайн</li>
+                        <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Мгновенная синхронизация данных</li>
                     </ul>
                 </div>
-
-                <!-- Блок с QR-кодом -->
                 <div class="md:w-2/5 flex justify-center">
                     <div class="bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center transform transition hover:scale-105 duration-300">
-                        <!-- Вшитый QR код согласно запросу -->
-                        <img src="70CDA78D-44B9-4C90-B0EE-958D5BAE0E5F.png" alt="QR код для заполнения брифа" class="w-64 h-64 object-contain mb-4 rounded-xl border border-gray-100">
+                        <img src="70CDA78D-44B9-4C90-B0EE-958D5BAE0E5F.png" alt="QR код демо версии StaroSTATT" class="w-64 h-64 object-contain mb-4 rounded-xl border border-gray-100">
                         <p class="text-gray-800 font-bold text-center uppercase tracking-wide">
-                            Наведите камеру <br> <span class="text-primary text-sm">Отсканируй меня</span>
+                            Наведите камеру <br> <span class="text-primary text-sm">Открыть StaroSTATT</span>
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Подвал (Footer) -->
-    <footer class="bg-slate-950 py-10 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
-            <div class="flex items-center gap-2 mb-4 md:mb-0">
-                <i class="fa-solid fa-layer-group text-slate-500"></i>
-                <span class="font-bold text-white">ADAPTiv</span> © 2026. Все права защищены.
+    <!-- Подвал (Footer) + БРЕНДБУК -->
+    <footer class="bg-slate-950 pt-20 pb-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Блок Брендбука -->
+            <div class="flex flex-col items-center mb-16 border-b border-slate-800 pb-16">
+                <!-- Надпись -->
+                <h3 class="text-slate-500 uppercase tracking-[0.2em] text-sm font-bold mb-10 text-center">Брендбук сайта</h3>
+                
+                <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+                    
+                    <!-- 1. Отдельный Логотип -->
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="text-5xl font-extrabold text-white flex items-center gap-4">
+                            <i class="fa-solid fa-layer-group text-blue-500"></i>
+                            ADAPT<span class="text-blue-500">iv</span>
+                        </div>
+                        <span class="text-slate-500 text-[11px] tracking-wider uppercase font-medium">Официальный логотип</span>
+                    </div>
+
+                    <!-- Разделитель для десктопа -->
+                    <div class="hidden md:block w-px h-20 bg-slate-800"></div>
+                    <div class="md:hidden w-20 h-px bg-slate-800"></div>
+
+                    <!-- 2. Печать для сайта -->
+                    <div class="flex flex-col items-center gap-4">
+                        <!-- Сама печать (Сверстана на CSS) -->
+                        <div class="seal-spin relative flex items-center justify-center w-32 h-32 bg-slate-900 rounded-full shadow-lg border-[3px] border-blue-500 cursor-default hover:shadow-blue-500/20 transition-shadow">
+                            <!-- Внутренний пунктир -->
+                            <div class="absolute inset-2 border-[1.5px] border-blue-400/60 rounded-full border-dashed"></div>
+                            
+                            <!-- Декоративные кружки -->
+                            <div class="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <div class="absolute bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-blue-500 rounded-full"></div>
+                            
+                            <!-- Внутренний текст -->
+                            <div class="text-blue-400 text-[10px] font-bold uppercase tracking-[0.15em] text-center leading-relaxed">
+                                Approved<br>
+                                <i class="fa-solid fa-star text-sm my-1 text-blue-300"></i><br>
+                                Quality
+                            </div>
+                        </div>
+                        <span class="text-slate-500 text-[11px] tracking-wider uppercase font-medium">Знак качества / Печать</span>
+                    </div>
+
+                </div>
             </div>
-            <div class="flex space-x-6">
-                <a href="#" class="hover:text-white transition">Политика конфиденциальности</a>
-                <a href="#" class="hover:text-white transition">Договор оферты</a>
+
+            <!-- Копирайт и ссылки -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <span class="font-bold text-slate-400">ADAPTiv</span> © 2026. Все права защищены.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-blue-400 transition">starostatt.ru</a>
+                </div>
             </div>
+
         </div>
     </footer>
 
