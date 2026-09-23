@@ -1,0 +1,885 @@
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADAPTiv — Оптимизация через код</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Outfit:wght@500;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ==========================================
+1. CORE SETUP & BACKGROUND
+========================================== */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+background-color: #030712; /* Very deep dark blue/black */
+display: grid;
+gap: 40px;
+grid-template-columns: 1fr;
+min-height: 100vh;
+padding: 40px 0;
+place-items: center;
+}
+
+.slide-container {
+align-items: center;
+/* Complex mesh gradient background */
+background: radial-gradient(circle at 15% 50%, rgba(20, 184, 166, 0.08), transparent 50%),
+radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.12), transparent 50%),
+#0b0f19;
+border-radius: 24px;
+box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+border: 1px solid rgba(255, 255, 255, 0.05);
+display: flex;
+flex-direction: column;
+font-family: 'Manrope', sans-serif;
+height: 720px;
+justify-content: center;
+overflow: hidden;
+padding: 60px 80px;
+position: relative;
+width: 1280px;
+color: #f8fafc;
+}
+
+.slide-container > * {
+position: relative;
+z-index: 2;
+}
+
+/* Abstract glowing orb element */
+.slide-container::before {
+content: '';
+position: absolute;
+width: 600px;
+height: 600px;
+background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+top: -300px;
+right: -300px;
+border-radius: 50%;
+z-index: 0;
+pointer-events: none;
+}
+
+/* ==========================================
+2. GLOBAL LOGO
+========================================== */
+.slide-logo {
+position: absolute;
+top: 45px;
+left: 60px;
+font-family: 'Outfit', sans-serif;
+font-size: 32px;
+font-weight: 800;
+color: #ffffff;
+letter-spacing: 0.02em;
+z-index: 10;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.slide-logo i {
+color: #38bdf8;
+font-size: 28px;
+}
+
+.slide-logo span {
+background: linear-gradient(135deg, #38bdf8, #818cf8);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+3. TYPOGRAPHY
+========================================== */
+.slide-container h1,
+.slide-container h2,
+.slide-container h3,
+.slide-container th,
+.slide-container .number {
+font-family: 'Outfit', sans-serif;
+color: #ffffff;
+font-weight: 700;
+}
+
+.slide-container p,
+.slide-container li,
+.slide-container td {
+font-family: 'Manrope', sans-serif;
+color: #94a3b8; /* Slate 400 */
+line-height: 1.6;
+}
+
+.slide-container h1 {
+font-size: 80px;
+letter-spacing: -0.02em;
+line-height: 1.1;
+margin-bottom: 24px;
+}
+
+.slide-container h1 span,
+.slide-container h2 span,
+.text-gradient {
+background: linear-gradient(135deg, #38bdf8, #818cf8);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.slide-container .slide-title {
+font-size: 48px;
+letter-spacing: -0.01em;
+margin-bottom: 40px;
+text-align: left;
+width: 100%;
+}
+
+.slide-container h3 {
+font-size: 26px;
+margin-bottom: 16px;
+}
+
+.slide-container p { font-size: 19px; }
+.slide-container li { font-size: 19px; margin-bottom: 16px; }
+
+.slide-container .subtitle {
+font-size: 24px;
+font-weight: 400;
+color: #cbd5e1;
+max-width: 800px;
+margin: 0 auto;
+}
+
+.content-area {
+align-items: center;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+justify-content: center;
+width: 100%;
+}
+
+/* ==========================================
+4. LAYOUTS & COMPONENTS
+========================================== */
+
+/* Title Layout */
+.title-layout {
+text-align: center;
+width: 100%;
+}
+
+/* Section Title Layout */
+.section-title-layout {
+align-items: center;
+display: flex;
+flex-direction: column;
+height: 100%;
+justify-content: center;
+text-align: center;
+width: 100%;
+}
+
+.section-title-layout h2 {
+font-size: 72px;
+margin-bottom: 24px;
+}
+
+.section-title-layout p {
+font-size: 26px;
+color: #cbd5e1;
+max-width: 700px;
+}
+
+.section-title-layout .separator {
+width: 60px;
+height: 4px;
+background: linear-gradient(90deg, #38bdf8, #818cf8);
+border-radius: 2px;
+margin: 0 auto 30px;
+}
+
+/* Tiled Content (Process Steps) */
+.tiled-content {
+align-items: stretch;
+display: flex;
+gap: 30px;
+justify-content: center;
+width: 100%;
+}
+
+.tile {
+align-items: flex-start;
+background: rgba(255, 255, 255, 0.02);
+backdrop-filter: blur(12px);
+border-radius: 20px;
+border: 1px solid rgba(255, 255, 255, 0.08);
+display: flex;
+flex-direction: column;
+flex: 1;
+padding: 40px 30px;
+text-align: left;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.tile .icon {
+color: #38bdf8;
+font-size: 32px;
+margin-bottom: 24px;
+background: rgba(56, 189, 248, 0.1);
+width: 64px;
+height: 64px;
+border-radius: 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.tile h3 { font-size: 22px; }
+.tile p { font-size: 16px; margin: 0; line-height: 1.5; }
+
+/* Two Column Standard */
+.two-column {
+align-items: center;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+width: 100%;
+}
+
+.two-column ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.two-column li {
+position: relative;
+padding-left: 32px;
+color: #e2e8f0;
+}
+
+.two-column li i {
+position: absolute;
+left: 0;
+top: 4px;
+color: #38bdf8;
+font-size: 18px;
+}
+
+/* Image Wrapper with Glassmorphism */
+.image-wrapper {
+background: rgba(255, 255, 255, 0.02);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 20px;
+padding: 12px;
+width: 100%;
+height: 420px;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.image-wrapper img {
+width: 100%;
+height: 100%;
+object-fit: cover; /* Keeps UI screenshots looking crisp */
+object-position: top left;
+border-radius: 12px;
+}
+
+/* Bleed Image Right - Strict Layout */
+.slide-container.bleed-image-layout {
+align-items: start;
+display: grid;
+gap: 60px;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+padding: 0;
+}
+
+.slide-container.bleed-image-layout > .content-container {
+padding: 80px 0 80px 80px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+height: 100%;
+}
+
+.slide-container.bleed-image-layout .slide-title {
+margin-bottom: 30px;
+}
+
+.slide-container.bleed-image-layout > .image-container {
+height: 100%;
+overflow: hidden;
+width: 100%;
+border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slide-container.bleed-image-layout img.bleed-image-side {
+display: block;
+height: 720px;
+object-fit: cover;
+object-position: left center;
+width: 100%;
+}
+
+.bleed-text-side p {
+font-size: 20px;
+color: #cbd5e1;
+margin-bottom: 24px;
+}
+
+/* Two Column Tiled Text (Pros & Cons) */
+.two-column.tiled {
+align-items: stretch;
+gap: 40px;
+}
+
+.two-column.tiled > div {
+background: rgba(255, 255, 255, 0.02);
+backdrop-filter: blur(10px);
+border-radius: 20px;
+border: 1px solid rgba(255, 255, 255, 0.08);
+padding: 40px;
+position: relative;
+overflow: hidden;
+}
+
+.two-column.tiled > div::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+}
+
+.two-column.tiled > div:nth-child(1)::before {
+background: linear-gradient(90deg, #10b981, #34d399); /* Emerald Green */
+}
+
+.two-column.tiled > div:nth-child(2)::before {
+background: linear-gradient(90deg, #f43f5e, #fb7185); /* Rose Red */
+}
+
+.two-column.tiled h3 { margin-bottom: 24px; }
+
+/* Table Layout */
+.table-layout { width: 100%; }
+
+.table-layout table {
+border-collapse: collapse;
+width: 100%;
+background: rgba(255, 255, 255, 0.02);
+border-radius: 16px;
+overflow: hidden;
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-layout th,
+.table-layout td {
+border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+padding: 24px;
+text-align: left;
+}
+
+.table-layout th {
+background: rgba(255, 255, 255, 0.05);
+color: #f8fafc;
+font-size: 20px;
+}
+
+.table-layout td { font-size: 18px; }
+.table-layout tr:last-child td { border-bottom: none; }
+
+.highlight-col {
+background: rgba(56, 189, 248, 0.05);
+border-left: 1px solid rgba(56, 189, 248, 0.2);
+border-right: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+th.highlight-col {
+background: rgba(56, 189, 248, 0.15);
+color: #38bdf8;
+}
+
+/* Q&A Layout */
+.qa-layout {
+margin: 0 auto;
+text-align: center;
+width: 100%;
+align-self: center;
+}
+
+.qa-layout h2 { font-size: 72px; margin-bottom: 20px; }
+.qa-layout p { font-size: 24px; color: #cbd5e1; }
+
+.qa-layout .contact-info {
+background: linear-gradient(135deg, #38bdf8, #818cf8);
+border-radius: 100px;
+color: #ffffff;
+display: inline-block;
+font-size: 22px;
+margin-top: 50px;
+padding: 20px 48px;
+font-weight: 700;
+font-family: 'Outfit', sans-serif;
+box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+</style>
+<style>
+.lms-source-label {
+position: absolute;
+top: 8px;
+right: 8px;
+background-color: #e0e0e0;
+color: #333333;
+border-radius: 10px;
+padding: 4px 4px;
+font-family: sans-serif;
+font-size: 10px;
+pointer-events: none;
+font-weight: 500;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style><style>
+/* The container that fills available space. It's the positioning context. /
+#slideshow-holder {
+width: 100%;
+position: relative;
+flex-grow: 1; / Replaces flex-grow Tailwind class for clarity /
+overflow: hidden;
+padding: 1rem; / Replaces p-4 Tailwind class */
+}
+
+/* UI controls should not be text-selectable. */
+#nav-controls.select-none,
+#theme-toggle.select-none {
+user-select: none;
+-webkit-user-select: none;
+}
+
+/* The element that is scaled and centered. /
+#slideshow-wrapper {
+width: 1280px;
+height: 720px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform-origin: center;
+transform: translate(-50%, -50%) scale(var(--scale-factor, 1));
+transition: transform 0.3s ease-in-out;
+/ Visual styles moved here from the holder */
+border-radius: 0.5rem;
+box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+overflow: hidden;
+}
+
+/* Update slide container styles */
+.slide-container {
+width: 100%;
+height: 100%;
+overflow: hidden;
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.5s ease-in-out;
+}
+
+/* Make the active slide visible */
+.slide-container.active {
+opacity: 1;
+pointer-events: auto;
+}
+</style><script src="https://cdn.tailwindcss.com/3.4.17"></script><script>
+tailwind.config = {
+darkMode: 'class',
+corePlugins: {
+preflight: false,
+},
+}
+</script></head>
+<body class="bg-gray-100 dark:bg-gray-900 flex flex-col h-screen transition-colors duration-300">
+
+<!-- Slide 1: Title_Slide -->
+
+<!-- Slide 2: Tiled_Text_With_Icons (Process) -->
+
+<!-- Slide 3: Section_Title -->
+
+<!-- Slide 4: Bleed_Image_Right (Case Study Main) -->
+
+<!-- Slide 5: Image_Right_Text_Left (Feature 1) -->
+
+<!-- Slide 6: Two_Column (Reversed layout visually) for Feature 2 -->
+
+<!-- Slide 7: Two_Column_Tiled_Text (Pros/Cons) -->
+
+<!-- Slide 8: Table (Competitors) -->
+
+<!-- Slide 9: Q&A -->
+
+<button id="theme-toggle" class="select-none absolute top-4 right-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-2 rounded-full shadow-md text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all duration-300 z-20 border-none leading-[0] cursor-pointer">
+<svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 -960 960 960"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"></path></svg>
+</button>
+
+<div id="nav-controls" class="select-none relative flex-shrink-0 w-full flex justify-center items-center p-4">
+<span id="slide-counter" class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 dark:text-gray-400 font-sans"></span>
+<div class="flex items-center space-x-2">
+<button id="prev-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+</button>
+<button id="next-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+</button>
+</div>
+</div>
+
+<div id="slideshow-holder"><div id="slideshow-wrapper"><div class="slide-container" id="slide1">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<div class="title-layout">
+<h1>Превращаем вашу рутину в
+<span>цифровой актив</span></h1>
+<p class="subtitle">Разработка кастомных сайтов и приложений для бизнеса. Вы проходите опрос — мы находим "узкое горлышко" и создаем продукт, который экономит ваше время.</p>
+</div>
+</div><div class="slide-container" id="slide2">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<h2 class="slide-title">Как мы создаем решения</h2>
+<div class="content-area">
+<div class="tiled-content">
+<div class="tile">
+<div class="icon"><i class="fa-solid fa-clipboard-list"></i></div>
+<h3>1. Бриф и Анализ</h3>
+<p>Вы заполняете удобную форму опроса, описывая задачи, которые отнимают больше всего времени. Мы анализируем процессы и предлагаем концепцию.</p>
+</div>
+<div class="tile">
+<div class="icon"><i class="fa-solid fa-code"></i></div>
+<h3>2. Разработка</h3>
+<p>Наша команда пишет чистый код и создает интуитивный интерфейс. Мы не используем шаблонные конструкторы — всё пишется индивидуально под вас.</p>
+</div>
+<div class="tile">
+<div class="icon"><i class="fa-solid fa-rocket"></i></div>
+<h3>3. Готовый Продукт</h3>
+<p>Вы получаете сайт или приложение, готовое к работе. С первого дня внедрения система начинает экономить ваши часы и ресурсы.</p>
+</div>
+</div>
+</div>
+</div><div class="slide-container" id="slide3">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<div class="section-title-layout">
+<div class="separator"></div>
+<h2>От теории к практике:
+<span style="color: #ffffff;">Кейс</span> <span>StaroSTATT</span></h2>
+<p>Показываем на реальном примере, как мы автоматизировали работу старост университетов, сэкономив им десятки часов в месяц.</p>
+</div>
+</div><div class="slide-container bleed-image-layout" id="slide4">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<div class="content-container">
+<h2 class="slide-title">Рабочее место старосты</h2>
+<div class="content-area">
+<div class="bleed-text-side">
+<p><strong>Проблема:</strong> Ежедневная рутина с бумажными ведомостями, ручной подсчет академических часов, потерянные медицинские справки и сложный сбор статистики в конце месяца.</p>
+<p><strong>Решение ADAPTiv:</strong> StaroSTATT — веб-приложение, созданное специально для учета посещаемости. Без регистраций, с мгновенным сохранением данных.</p>
+</div>
+</div>
+</div>
+<div class="image-container">
+<img class="bleed-image-side" src="blobstore:///contrib_service/ttl_1d/bt5vbjwxej6afjn42vpqt6i76ckzro1790165378" alt="Главная страница StaroSTATT">
+</div>
+</div><div class="slide-container" id="slide5">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<h2 class="slide-title">Журнал в один клик</h2>
+<div class="content-area">
+<div class="two-column">
+<div>
+<p style="margin-bottom: 24px; color: #e2e8f0;">Умный интерфейс позволяет отметить группу за несколько секунд:</p>
+<ul>
+<li><i class="fa-solid fa-check"></i> <strong>Умная дата:</strong> Выберите день, и система сама подставит расписание пар.</li>
+<li><i class="fa-solid fa-check"></i> <strong>Массовые отметки:</strong> Кнопка "Отметить всех" при 100% явке.</li>
+<li><i class="fa-solid fa-check"></i> <strong>Детальный учет:</strong> Фиксация ответов на семинарах и удобные текстовые заметки о долгах для каждого студента.</li>
+</ul>
+</div>
+<div>
+<div class="image-wrapper">
+<img src="blobstore:///contrib_service/ttl_1d/kuxnsxiey6hvzsx2f7zbp3q37pohc31790165387" alt="Интерфейс журнала StaroSTATT">
+</div>
+</div>
+</div>
+</div>
+</div><div class="slide-container" id="slide6">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<h2 class="slide-title">Автоматические отчеты</h2>
+<div class="content-area">
+<div class="two-column">
+<div>
+<div class="image-wrapper">
+<img src="blobstore:///contrib_service/ttl_1d/pcgkuzleukqkem6dnl5gpzal4ll3tc1790165395" alt="Интерфейс отчетов StaroSTATT">
+</div>
+</div>
+<div>
+<p style="margin-bottom: 24px; color: #e2e8f0;">Больше никаких калькуляторов в конце месяца. Система делает всё за вас:</p>
+<ul>
+<li><i class="fa-solid fa-file-export"></i> <strong>Смотр куратора:</strong> Автоматический подсчет академических часов (лекции и семинары).</li>
+<li><i class="fa-solid fa-percent"></i> <strong>Точная статистика:</strong> Расчет процентов посещаемости для каждого студента в реальном времени.</li>
+<li><i class="fa-solid fa-download"></i> <strong>Выгрузка CSV:</strong> Скачивание готового отчета в один клик для отправки в деканат.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="slide-container" id="slide7">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<h2 class="slide-title">Честно о нашем подходе</h2>
+<div class="content-area">
+<div class="two-column tiled">
+<div>
+<h3><i class="fa-solid fa-shield-check" style="color: #10b981; margin-right: 10px;"></i> Почему выбирают ADAPTiv</h3>
+<ul>
+<li><i class="fa-solid fa-bullseye"></i> <strong>Точное попадание:</strong> Продукт решают вашу реальную боль, а не абстрактную.</li>
+<li><i class="fa-solid fa-palette"></i> <strong>UI/UX Дизайн:</strong> Мы делаем современные и эстетичные интерфейсы (как StaroSTATT).</li>
+<li><i class="fa-solid fa-expand"></i> <strong>Масштабируемость:</strong> В кастомный код легко добавить любой новый функционал.</li>
+</ul>
+</div>
+<div>
+<h3><i class="fa-solid fa-circle-exclamation" style="color: #f43f5e; margin-right: 10px;"></i> Ограничения формата</h3>
+<ul>
+<li><i class="fa-solid fa-clock"></i> <strong>Время создания:</strong> Разработка с нуля занимает больше времени, чем покупка готового шаблона.</li>
+<li><i class="fa-solid fa-users"></i> <strong>Ваше участие:</strong> Нам необходимо ваше время на этапе заполнения брифа и согласования логики.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="slide-container" id="slide8">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<h2 class="slide-title">Сравнение с конкурентами</h2>
+<div class="content-area">
+<div class="table-layout">
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th class="highlight-col">ADAPTiv</th>
+<th>Готовые CRM / SaaS</th>
+<th>Фрилансеры</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Погружение в вашу работу</strong></td>
+<td class="highlight-col">Глубокое (через бриф-опрос)</td>
+<td>Отсутствует (шаблонно)</td>
+<td>Зависит от вашего ТЗ</td>
+</tr>
+<tr>
+<td><strong>Индивидуальность решения</strong></td>
+<td class="highlight-col">100% под ваши процессы</td>
+<td>Ограничена настройками</td>
+<td>В рамках навыков исполнителя</td>
+</tr>
+<tr>
+<td><strong>Дизайн и Удобство (UX)</strong></td>
+<td class="highlight-col">Премиум, интуитивный</td>
+<td>Универсальный, перегруженный</td>
+<td>Часто страдает</td>
+</tr>
+<tr>
+<td><strong>Экономия времени (ROI)</strong></td>
+<td class="highlight-col">Максимальная</td>
+<td>Средняя</td>
+<td>Непредсказуемая</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="slide-container" id="slide9">
+<div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
+<div class="qa-layout">
+<h2>Готовы к изменениям?</h2>
+<p>Избавьтесь от рутины навсегда. Заполните наш короткий бриф,
+и мы спроектируем ваше идеальное цифровое рабочее место.</p>
+<div class="contact-info">
+Перейти к опросу <i class="fa-solid fa-arrow-right" style="margin-left: 12px;"></i>
+</div>
+</div>
+</div></div></div><script>
+/
+
+⚬ Fetches an image blob using a method that attempts to bypass CORS issues
+
+⚬ by adding 'alr=yes' to the URL and following redirects.
+*/
+async function fetchFifeImageBlobUsingAlr(urlString) {
+if (urlString.startsWith('blob:') || urlString.startsWith('data:')) {
+throw new Error('Input URL is already a blob or data URL.');
+}
+let url = new URL(urlString, window.location.href);
+url.searchParams.set('alr', 'yes');
+for (let i = 0; i < 5; i++) {
+const response = await fetch(url.toString(), {credentials: 'include'});
+if (!response.ok) {
+throw new Error(Fetch received not OK response: ${response.status});
+}
+if (!response.headers.get('content-type')?.startsWith('text/plain')) {
+const blob = await response.blob();
+if (blob.size > 0 && blob.type.startsWith('image/')) {
+return blob;
+}
+throw new Error('Fetched blob is not a valid image.');
+}
+url = new URL(await response.text());
+}
+throw new Error('Exceeded maximum number of redirects.');
+}
+
+async function updateImageSourcesUsingAlr() {
+// Use Promise.all to handle all updates concurrently for better performance.
+await Promise.all(Array.from(document.querySelectorAll('img'), async (img) => {
+// Only proceed if the img tag has a valid 'src' attribute with a
+// googleusercontent URL.
+if (img.src && img.src.includes('googleusercontent')) {
+try {
+const blob = await fetchFifeImageBlobUsingAlr(img.src);
+// Create a new URL from the Blob and set it as the image's source.
+img.src = URL.createObjectURL(blob);
+} catch (error) {
+// Do nothing.
+}
+}
+}));
+}
+
+async function updateBackgroundImagesUsingAlr() {
+// Find all elements with a googleusercontent background image.
+const elementsToProcess =
+document.querySelectorAll('[style*="googleusercontent"]');
+const urlRegex = /url((['"]?)(https?://.?googleusercontent.?)\1)/;
+
+await Promise.all(Array.from(elementsToProcess, async (element) => {
+const backgroundImage = element.style.backgroundImage;
+const match = backgroundImage.match(urlRegex);
+
+if (match && match[2]) {
+const originalUrl = match[2];
+try {
+const blob = await fetchFifeImageBlobUsingAlr(originalUrl);
+const blobUrl = URL.createObjectURL(blob);
+
+// Directly update the element's style property.
+element.style.backgroundImage =
+backgroundImage.replace(originalUrl, blobUrl);
+} catch (error) {
+// Do nothing.
+}
+}
+}));
+}
+
+// --- SLIDESHOW LOGIC ---
+function initializeSlideshowUi() {
+const slides = document.querySelectorAll('.slide-container');
+const prevButton = document.getElementById('prev-slide');
+const nextButton = document.getElementById('next-slide');
+const slideCounter = document.getElementById('slide-counter');
+let currentSlide = 0;
+
+function updateUi() {
+slides.forEach((slide, index) => {
+slide.classList.toggle('active', index === currentSlide);
+});
+prevButton.disabled = currentSlide === 0;
+nextButton.disabled = currentSlide === slides.length - 1;
+slideCounter.textContent = Slide ${currentSlide + 1} of ${slides.length};
+}
+
+function showNextSlide() {
+if (currentSlide < slides.length - 1) {
+currentSlide++;
+updateUi();
+}
+}
+
+function showPrevSlide() {
+if (currentSlide > 0) {
+currentSlide--;
+updateUi();
+}
+}
+
+nextButton.addEventListener('click', showNextSlide);
+prevButton.addEventListener('click', showPrevSlide);
+document.addEventListener('keydown', (e) => {
+// Don't intercept arrow keys when the user is editing text.
+const el = e.target;
+if (el.isContentEditable || el.tagName === 'INPUT' ||
+el.tagName === 'TEXTAREA') {
+return;
+}
+if (e.key === 'ArrowRight') {
+showNextSlide();
+} else if (e.key === 'ArrowLeft') {
+showPrevSlide();
+}
+});
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+const darkIcon = document.getElementById('theme-toggle-dark-icon');
+const lightIcon = document.getElementById('theme-toggle-light-icon');
+const htmlEl = document.documentElement;
+
+function setTheme(isDark) {
+htmlEl.classList.toggle('dark', isDark);
+darkIcon.classList.toggle('hidden', isDark);
+lightIcon.classList.toggle('hidden', !isDark);
+localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+}
+const isDarkMode = localStorage.getItem('color-theme') === 'dark' ||
+(!('color-theme' in localStorage) &&
+window.matchMedia('(prefers-color-scheme: dark)').matches);
+setTheme(isDarkMode);
+themeToggleBtn.addEventListener(
+'click', () => setTheme(!htmlEl.classList.contains('dark')));
+
+function updateScale() {
+const baseWidth = 1280;
+const baseHeight = 720;
+const slideshowWrapper = document.getElementById('slideshow-wrapper');
+const slideshowHolder = document.getElementById('slideshow-holder');
+
+// The available space is the dimensions of the holder div.
+const availableWidth = slideshowHolder.clientWidth;
+const availableHeight = slideshowHolder.clientHeight;
+
+// Calculate the scale ratio based on both width and height
+const scaleX = availableWidth / baseWidth;
+const scaleY = availableHeight / baseHeight;
+
+// Use the smaller of the two ratios to ensure it fits
+const finalScale = Math.min(scaleX, scaleY);
+
+slideshowWrapper.style.setProperty('--scale-factor', finalScale);
+}
+
+updateUi();
+updateScale();
+window.addEventListener('resize', updateScale);
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+await Promise.all(
+[updateImageSourcesUsingAlr(), updateBackgroundImagesUsingAlr()]);
+initializeSlideshowUi();
+});
+</script></body></html>
