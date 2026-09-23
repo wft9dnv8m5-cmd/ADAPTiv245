@@ -19,22 +19,22 @@ padding: 0;
 body {
 background-color: #030712; /* Very deep dark blue/black */
 display: grid;
-gap: 40px;
 grid-template-columns: 1fr;
 min-height: 100vh;
-padding: 40px 0;
+padding: 0; /* Убраны отступы для полноэкранного режима */
+margin: 0;
 place-items: center;
+overflow: hidden; /* Скрываем возможные скроллбары */
 }
 
 .slide-container {
 align-items: center;
-/* Complex mesh gradient background */
 background: radial-gradient(circle at 15% 50%, rgba(20, 184, 166, 0.08), transparent 50%),
 radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.12), transparent 50%),
 #0b0f19;
-border-radius: 24px;
-box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-border: 1px solid rgba(255, 255, 255, 0.05);
+border-radius: 0; /* Убрано скругление */
+box-shadow: none; /* Убраны тени рамки */
+border: none; /* Убрана граница */
 display: flex;
 flex-direction: column;
 font-family: 'Manrope', sans-serif;
@@ -290,7 +290,7 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 .image-wrapper img {
 width: 100%;
 height: 100%;
-object-fit: cover; /* Keeps UI screenshots looking crisp */
+object-fit: cover;
 object-position: top left;
 border-radius: 12px;
 }
@@ -363,11 +363,11 @@ height: 4px;
 }
 
 .two-column.tiled > div:nth-child(1)::before {
-background: linear-gradient(90deg, #10b981, #34d399); /* Emerald Green */
+background: linear-gradient(90deg, #10b981, #34d399);
 }
 
 .two-column.tiled > div:nth-child(2)::before {
-background: linear-gradient(90deg, #f43f5e, #fb7185); /* Rose Red */
+background: linear-gradient(90deg, #f43f5e, #fb7185);
 }
 
 .two-column.tiled h3 { margin-bottom: 24px; }
@@ -411,7 +411,7 @@ background: rgba(56, 189, 248, 0.15);
 color: #38bdf8;
 }
 
-/* Q&A Layout */
+/* Q&A Layout (Стилизованная кнопка) */
 .qa-layout {
 margin: 0 auto;
 text-align: center;
@@ -426,7 +426,8 @@ align-self: center;
 background: linear-gradient(135deg, #38bdf8, #818cf8);
 border-radius: 100px;
 color: #ffffff;
-display: inline-block;
+display: inline-flex;
+align-items: center;
 font-size: 22px;
 margin-top: 50px;
 padding: 20px 48px;
@@ -435,6 +436,14 @@ font-family: 'Outfit', sans-serif;
 box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
 text-transform: uppercase;
 letter-spacing: 0.05em;
+text-decoration: none; /* Убираем подчеркивание для ссылки */
+cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qa-layout .contact-info:hover {
+transform: translateY(-3px);
+box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
 }
 </style>
 <style>
@@ -453,13 +462,13 @@ font-weight: 500;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 </style><style>
-/* The container that fills available space. It's the positioning context. /
+/* The container that fills available space. It's the positioning context. */
 #slideshow-holder {
 width: 100%;
 position: relative;
-flex-grow: 1; / Replaces flex-grow Tailwind class for clarity /
+flex-grow: 1;
 overflow: hidden;
-padding: 1rem; / Replaces p-4 Tailwind class */
+padding: 0; /* Убраны внутренние отступы для растягивания на весь экран */
 }
 
 /* UI controls should not be text-selectable. */
@@ -469,7 +478,7 @@ user-select: none;
 -webkit-user-select: none;
 }
 
-/* The element that is scaled and centered. /
+/* The element that is scaled and centered. */
 #slideshow-wrapper {
 width: 1280px;
 height: 720px;
@@ -479,9 +488,8 @@ left: 50%;
 transform-origin: center;
 transform: translate(-50%, -50%) scale(var(--scale-factor, 1));
 transition: transform 0.3s ease-in-out;
-/ Visual styles moved here from the holder */
-border-radius: 0.5rem;
-box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+border-radius: 0; /* Убраны скругления */
+box-shadow: none; /* Убрана тень */
 overflow: hidden;
 }
 
@@ -511,7 +519,8 @@ preflight: false,
 },
 }
 </script></head>
-<body class="bg-gray-100 dark:bg-gray-900 flex flex-col h-screen transition-colors duration-300">
+<!-- Убраны классы bg-gray-100, чтобы избежать белого фона, когда слайд не идеально совпадает с пропорциями экрана -->
+<body class="flex flex-col h-screen transition-colors duration-300">
 
 <!-- Slide 1: Title_Slide -->
 
@@ -536,13 +545,14 @@ preflight: false,
 <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 -960 960 960"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"></path></svg>
 </button>
 
-<div id="nav-controls" class="select-none relative flex-shrink-0 w-full flex justify-center items-center p-4">
-<span id="slide-counter" class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-600 dark:text-gray-400 font-sans"></span>
+<!-- Убран фон и паддинги у нижней панели навигации -->
+<div id="nav-controls" class="select-none relative flex-shrink-0 w-full flex justify-center items-center p-4 bg-transparent z-10 absolute bottom-0">
+<span id="slide-counter" class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-500 font-sans"></span>
 <div class="flex items-center space-x-2">
-<button id="prev-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+<button id="prev-slide" class="bg-gray-800/80 hover:bg-gray-700 text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
 </button>
-<button id="next-slide" class="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+<button id="next-slide" class="bg-gray-800/80 hover:bg-gray-700 text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
 </button>
 </div>
@@ -710,15 +720,14 @@ preflight: false,
 <h2>Готовы к изменениям?</h2>
 <p>Избавьтесь от рутины навсегда. Заполните наш короткий бриф,
 и мы спроектируем ваше идеальное цифровое рабочее место.</p>
-<div class="contact-info">
+<!-- Превращено в кликабельную ссылку. Вставьте нужный URL в href="..." -->
+<a href="#" target="_blank" class="contact-info">
 Перейти к опросу <i class="fa-solid fa-arrow-right" style="margin-left: 12px;"></i>
-</div>
+</a>
 </div>
 </div></div></div><script>
-/
-
+/*
 ⚬ Fetches an image blob using a method that attempts to bypass CORS issues
-
 ⚬ by adding 'alr=yes' to the URL and following redirects.
 */
 async function fetchFifeImageBlobUsingAlr(urlString) {
@@ -730,7 +739,7 @@ url.searchParams.set('alr', 'yes');
 for (let i = 0; i < 5; i++) {
 const response = await fetch(url.toString(), {credentials: 'include'});
 if (!response.ok) {
-throw new Error(Fetch received not OK response: ${response.status});
+throw new Error(`Fetch received not OK response: ${response.status}`);
 }
 if (!response.headers.get('content-type')?.startsWith('text/plain')) {
 const blob = await response.blob();
@@ -745,27 +754,19 @@ throw new Error('Exceeded maximum number of redirects.');
 }
 
 async function updateImageSourcesUsingAlr() {
-// Use Promise.all to handle all updates concurrently for better performance.
 await Promise.all(Array.from(document.querySelectorAll('img'), async (img) => {
-// Only proceed if the img tag has a valid 'src' attribute with a
-// googleusercontent URL.
 if (img.src && img.src.includes('googleusercontent')) {
 try {
 const blob = await fetchFifeImageBlobUsingAlr(img.src);
-// Create a new URL from the Blob and set it as the image's source.
 img.src = URL.createObjectURL(blob);
-} catch (error) {
-// Do nothing.
-}
+} catch (error) {}
 }
 }));
 }
 
 async function updateBackgroundImagesUsingAlr() {
-// Find all elements with a googleusercontent background image.
-const elementsToProcess =
-document.querySelectorAll('[style*="googleusercontent"]');
-const urlRegex = /url((['"]?)(https?://.?googleusercontent.?)\1)/;
+const elementsToProcess = document.querySelectorAll('[style*="googleusercontent"]');
+const urlRegex = /url\((['"]?)(https?:\/\/.+?googleusercontent.+?)\1\)/;
 
 await Promise.all(Array.from(elementsToProcess, async (element) => {
 const backgroundImage = element.style.backgroundImage;
@@ -776,13 +777,8 @@ const originalUrl = match[2];
 try {
 const blob = await fetchFifeImageBlobUsingAlr(originalUrl);
 const blobUrl = URL.createObjectURL(blob);
-
-// Directly update the element's style property.
-element.style.backgroundImage =
-backgroundImage.replace(originalUrl, blobUrl);
-} catch (error) {
-// Do nothing.
-}
+element.style.backgroundImage = backgroundImage.replace(originalUrl, blobUrl);
+} catch (error) {}
 }
 }));
 }
@@ -801,7 +797,7 @@ slide.classList.toggle('active', index === currentSlide);
 });
 prevButton.disabled = currentSlide === 0;
 nextButton.disabled = currentSlide === slides.length - 1;
-slideCounter.textContent = Slide ${currentSlide + 1} of ${slides.length};
+slideCounter.textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
 }
 
 function showNextSlide() {
@@ -821,10 +817,8 @@ updateUi();
 nextButton.addEventListener('click', showNextSlide);
 prevButton.addEventListener('click', showPrevSlide);
 document.addEventListener('keydown', (e) => {
-// Don't intercept arrow keys when the user is editing text.
 const el = e.target;
-if (el.isContentEditable || el.tagName === 'INPUT' ||
-el.tagName === 'TEXTAREA') {
+if (el.isContentEditable || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
 return;
 }
 if (e.key === 'ArrowRight') {
@@ -849,8 +843,7 @@ const isDarkMode = localStorage.getItem('color-theme') === 'dark' ||
 (!('color-theme' in localStorage) &&
 window.matchMedia('(prefers-color-scheme: dark)').matches);
 setTheme(isDarkMode);
-themeToggleBtn.addEventListener(
-'click', () => setTheme(!htmlEl.classList.contains('dark')));
+themeToggleBtn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
 
 function updateScale() {
 const baseWidth = 1280;
@@ -858,15 +851,11 @@ const baseHeight = 720;
 const slideshowWrapper = document.getElementById('slideshow-wrapper');
 const slideshowHolder = document.getElementById('slideshow-holder');
 
-// The available space is the dimensions of the holder div.
 const availableWidth = slideshowHolder.clientWidth;
 const availableHeight = slideshowHolder.clientHeight;
 
-// Calculate the scale ratio based on both width and height
 const scaleX = availableWidth / baseWidth;
 const scaleY = availableHeight / baseHeight;
-
-// Use the smaller of the two ratios to ensure it fits
 const finalScale = Math.min(scaleX, scaleY);
 
 slideshowWrapper.style.setProperty('--scale-factor', finalScale);
@@ -878,8 +867,7 @@ window.addEventListener('resize', updateScale);
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-await Promise.all(
-[updateImageSourcesUsingAlr(), updateBackgroundImagesUsingAlr()]);
+await Promise.all([updateImageSourcesUsingAlr(), updateBackgroundImagesUsingAlr()]);
 initializeSlideshowUi();
 });
 </script></body></html>
