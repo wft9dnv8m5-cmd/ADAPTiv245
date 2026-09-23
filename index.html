@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="ru"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ADAPTiv — Оптимизация через код</title>
+<title>ADAPTiv — Продуктовая разработка и оптимизация</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -10,11 +10,7 @@
 /* ==========================================
    1. CORE SETUP & BACKGROUND
    ========================================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     background-color: #030712; 
@@ -29,12 +25,9 @@ body {
 
 .slide-container {
     align-items: center;
-    background: radial-gradient(circle at 15% 50%, rgba(20, 184, 166, 0.08), transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.12), transparent 50%),
+    background: radial-gradient(circle at 20% 40%, rgba(56, 189, 248, 0.08), transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(129, 140, 248, 0.12), transparent 50%),
                 #0b0f19;
-    border-radius: 0; 
-    box-shadow: none; 
-    border: none; 
     display: flex;
     flex-direction: column;
     font-family: 'Manrope', sans-serif;
@@ -53,11 +46,11 @@ body {
 .slide-container::before {
     content: '';
     position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
-    top: -300px;
-    right: -300px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.03) 0%, transparent 70%);
+    top: -400px;
+    right: -400px;
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
@@ -80,7 +73,6 @@ body {
     align-items: center;
     gap: 10px;
 }
-
 .slide-logo i { color: #38bdf8; font-size: 28px; }
 .slide-logo span {
     background: linear-gradient(135deg, #38bdf8, #818cf8);
@@ -91,416 +83,199 @@ body {
 /* ==========================================
    3. TYPOGRAPHY
    ========================================== */
-h1, h2, h3, th, .number {
-    font-family: 'Outfit', sans-serif;
-    color: #ffffff;
-    font-weight: 700;
-}
+h1, h2, h3, th, .number { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+p, li, td { font-family: 'Manrope', sans-serif; color: #94a3b8; line-height: 1.6; }
 
-p, li, td {
-    font-family: 'Manrope', sans-serif;
-    color: #94a3b8; 
-    line-height: 1.6;
-}
-
-h1 {
-    font-size: 80px;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 24px;
-}
-
+h1 { font-size: 76px; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 24px; }
 h1 span, h2 span, .text-gradient {
     background: linear-gradient(135deg, #38bdf8, #818cf8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.slide-title {
-    font-size: 48px;
-    letter-spacing: -0.01em;
-    margin-bottom: 40px;
-    text-align: left;
-    width: 100%;
-}
-
-h3 { font-size: 26px; margin-bottom: 16px; }
+.slide-title { font-size: 48px; letter-spacing: -0.01em; margin-bottom: 40px; text-align: left; width: 100%; }
+h3 { font-size: 26px; margin-bottom: 16px; color: #f8fafc; }
 p, li { font-size: 19px; }
 li { margin-bottom: 16px; }
 
-.subtitle {
-    font-size: 24px;
-    font-weight: 400;
-    color: #cbd5e1;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.content-area {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
-    width: 100%;
-}
+.subtitle { font-size: 24px; font-weight: 400; color: #cbd5e1; max-width: 900px; margin: 0 auto; }
+.content-area { align-items: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
 
 /* ==========================================
-   4. LAYOUTS & COMPONENTS
+   4. LAYOUTS & COMPONENTS (No Images)
    ========================================== */
-
-/* Title & Section Layouts */
 .title-layout { text-align: center; width: 100%; }
-.section-title-layout {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-}
-
+.section-title-layout { align-items: center; display: flex; flex-direction: column; height: 100%; justify-content: center; text-align: center; width: 100%; }
 .section-title-layout h2 { font-size: 72px; margin-bottom: 24px; }
-.section-title-layout p { font-size: 26px; color: #cbd5e1; max-width: 700px; }
-.section-title-layout .separator {
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
-    border-radius: 2px;
-    margin: 0 auto 30px;
-}
+.section-title-layout p { font-size: 26px; color: #cbd5e1; max-width: 800px; }
+.separator { width: 80px; height: 4px; background: linear-gradient(90deg, #38bdf8, #818cf8); border-radius: 2px; margin: 0 auto 30px; }
 
-/* Tiled Content (Process Steps) */
-.tiled-content {
-    align-items: stretch;
-    display: flex;
+/* Grid Cards (Glassmorphism) */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    justify-content: center;
     width: 100%;
 }
 
-.tile {
-    align-items: flex-start;
+.glass-card {
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 40px 30px;
+    padding: 40px;
     text-align: left;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.tile .icon {
-    color: #38bdf8;
-    font-size: 32px;
-    margin-bottom: 24px;
-    background: rgba(56, 189, 248, 0.1);
-    width: 64px;
-    height: 64px;
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.glass-card .icon-wrapper {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.1));
     border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #38bdf8;
+    margin-bottom: 24px;
     border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
-.tile h3 { font-size: 22px; }
-.tile p { font-size: 16px; margin: 0; line-height: 1.5; }
-
-/* Two Column Standard */
-.two-column {
+/* Metric Stats */
+.stat-box {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
+.stat-number { font-size: 64px; font-weight: 800; font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+.stat-label { font-size: 18px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+
+/* Two Column Text Focus */
+.two-column-text {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     width: 100%;
+    align-items: start;
 }
+.two-column-text ul { list-style: none; padding: 0; margin: 0; }
+.two-column-text li { position: relative; padding-left: 36px; margin-bottom: 24px; color: #e2e8f0; }
+.two-column-text li i { position: absolute; left: 0; top: 4px; color: #38bdf8; font-size: 20px; }
 
-.two-column ul { list-style: none; padding: 0; margin: 0; }
-.two-column li { position: relative; padding-left: 32px; color: #e2e8f0; }
-.two-column li i {
-    position: absolute;
-    left: 0;
-    top: 4px;
+/* Tech Stack Pills */
+.tech-stack { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+.tech-pill {
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
     color: #38bdf8;
-    font-size: 18px;
-}
-
-/* Image Wrapper with Glassmorphism */
-.image-wrapper {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 12px;
-    width: 100%;
-    height: 420px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    gap: 8px;
 }
-
-.image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top left;
-    border-radius: 12px;
-}
-
-/* Bleed Image Layout */
-.bleed-image-layout {
-    align-items: start;
-    display: grid;
-    gap: 60px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 0;
-}
-
-.bleed-image-layout > .content-container {
-    padding: 80px 0 80px 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-}
-
-.bleed-image-layout .slide-title { margin-bottom: 30px; }
-.bleed-image-layout > .image-container {
-    height: 100%;
-    overflow: hidden;
-    width: 100%;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.bleed-image-side {
-    display: block;
-    height: 720px;
-    object-fit: cover;
-    object-position: left center;
-    width: 100%;
-}
-
-.bleed-text-side p {
-    font-size: 20px;
-    color: #cbd5e1;
-    margin-bottom: 24px;
-}
-
-/* Pros & Cons */
-.two-column.tiled { align-items: stretch; gap: 40px; }
-.two-column.tiled > div {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-.two-column.tiled > div::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 4px;
-}
-
-.two-column.tiled > div:nth-child(1)::before { background: linear-gradient(90deg, #10b981, #34d399); }
-.two-column.tiled > div:nth-child(2)::before { background: linear-gradient(90deg, #f43f5e, #fb7185); }
-.two-column.tiled h3 { margin-bottom: 24px; }
 
 /* Table Layout */
-.table-layout table {
-    border-collapse: collapse;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.table-layout th, .table-layout td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 24px;
-    text-align: left;
-}
-
+.table-layout table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.02); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); }
+.table-layout th, .table-layout td { border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 24px; text-align: left; }
 .table-layout th { background: rgba(255, 255, 255, 0.05); color: #f8fafc; font-size: 20px; }
 .table-layout td { font-size: 18px; }
 .table-layout tr:last-child td { border-bottom: none; }
-.highlight-col {
-    background: rgba(56, 189, 248, 0.05);
-    border-left: 1px solid rgba(56, 189, 248, 0.2);
-    border-right: 1px solid rgba(56, 189, 248, 0.2);
-}
+.highlight-col { background: rgba(56, 189, 248, 0.05); border-left: 1px solid rgba(56, 189, 248, 0.2); border-right: 1px solid rgba(56, 189, 248, 0.2); }
 th.highlight-col { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
 
 /* ==========================================
-   5. CONVERSION & LEAD GENERATION (Конвертики)
+   5. QR CODE & CONVERSION
    ========================================== */
-
-/* Кнопка-конверт в углу экрана */
-.floating-contact {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #38bdf8, #818cf8);
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
-    z-index: 100;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.floating-contact:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.6);
-    color: #ffffff;
-}
-
-/* Форма на последнем слайде */
-.qa-layout {
-    margin: 0 auto;
-    text-align: center;
+.final-slide-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 60px;
     width: 100%;
-    align-self: center;
+    align-items: center;
 }
 
-.qa-layout h2 { font-size: 64px; margin-bottom: 20px; }
-.qa-layout p { font-size: 22px; color: #cbd5e1; margin-bottom: 40px;}
-
-.lead-form-box {
+.qr-container {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 24px;
     padding: 40px;
-    max-width: 600px;
-    margin: 0 auto;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.input-group {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 50px rgba(56, 189, 248, 0.15);
+    position: relative;
+}
+
+.qr-container::before {
+    content: ''; position: absolute; inset: -2px; border-radius: 26px;
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
+    z-index: -1; opacity: 0.5; filter: blur(10px);
+}
+
+.qr-image {
+    width: 250px;
+    height: 250px;
+    background-color: #fff; /* Белая подложка для читаемости кода */
+    border-radius: 16px;
+    padding: 10px;
     margin-bottom: 24px;
+    object-fit: contain;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 18px 24px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    font-size: 18px;
-    font-family: 'Manrope', sans-serif;
-    outline: none;
-    transition: border 0.3s ease;
-}
+.qr-text { text-align: center; color: #e2e8f0; font-size: 20px; font-weight: 500; }
 
-.input-group input:focus {
-    border-color: #38bdf8;
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.qa-layout .contact-info {
+.contact-info-btn {
     background: linear-gradient(135deg, #38bdf8, #818cf8);
     border-radius: 12px;
     color: #ffffff;
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
     font-size: 20px;
-    padding: 18px 48px;
+    padding: 20px 48px;
     font-weight: 700;
     font-family: 'Outfit', sans-serif;
     box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     text-decoration: none; 
-    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
-    width: 100%;
+    margin-top: 30px;
 }
+.contact-info-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5); }
 
-.qa-layout .contact-info:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
-}
-</style>
-<style>
 /* SLIDESHOW CORE */
-#slideshow-holder {
-    width: 100%;
-    position: relative;
-    flex-grow: 1;
-    overflow: hidden;
-    padding: 0;
-}
-
-#nav-controls.select-none, #theme-toggle.select-none { user-select: none; -webkit-user-select: none; }
-
-#slideshow-wrapper {
-    width: 1280px;
-    height: 720px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(-50%, -50%) scale(var(--scale-factor, 1));
-    transition: transform 0.3s ease-in-out;
-    border-radius: 0; 
-    box-shadow: none; 
-    overflow: hidden;
-}
-
-.slide-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease-in-out;
-}
-
+#slideshow-holder { width: 100%; position: relative; flex-grow: 1; overflow: hidden; padding: 0; }
+#nav-controls.select-none { user-select: none; -webkit-user-select: none; }
+#slideshow-wrapper { width: 1280px; height: 720px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(var(--scale-factor, 1)); transform-origin: center; transition: transform 0.3s ease-in-out; }
+.slide-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; opacity: 0; pointer-events: none; transition: opacity 0.5s ease-in-out; }
 .slide-container.active { opacity: 1; pointer-events: auto; }
-</style><script src="https://cdn.tailwindcss.com/3.4.17"></script><script>
-tailwind.config = { darkMode: 'class', corePlugins: { preflight: false, }, }
-</script></head>
-<body class="flex flex-col h-screen transition-colors duration-300">
+</style>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config = { corePlugins: { preflight: false } }</script>
+</head>
+<body class="flex flex-col h-screen">
 
-<!-- ПЛАВАЮЩИЙ КОНВЕРТ ДЛЯ СВЯЗИ (ЛЮБОЙ СЛАЙД) -->
-<!-- Замените href на вашу ссылку, например: https://t.me/вашниктг -->
-<a href="#" target="_blank" class="floating-contact" title="Связаться с нами">
-    <i class="fa-solid fa-envelope"></i>
-</a>
-
-<!-- Нижняя навигация -->
+<!-- Навигация -->
 <div id="nav-controls" class="select-none relative flex-shrink-0 w-full flex justify-center items-center p-4 bg-transparent z-10 absolute bottom-0">
     <span id="slide-counter" class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-500 font-sans"></span>
     <div class="flex items-center space-x-2">
-        <button id="prev-slide" class="bg-gray-800/80 hover:bg-gray-700 text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+        <button id="prev-slide" class="bg-gray-800/80 hover:bg-gray-700 text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 cursor-pointer border-none">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
         </button>
-        <button id="next-slide" class="bg-gray-800/80 hover:bg-gray-700 text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md border-none leading-[0] cursor-pointer">
+        <button id="next-slide" class="bg-gray-800/80 hover:bg-gray-700 text-gray-300 p-2 rounded-md transition-colors duration-300 disabled:opacity-50 cursor-pointer border-none">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
         </button>
     </div>
@@ -508,145 +283,136 @@ tailwind.config = { darkMode: 'class', corePlugins: { preflight: false, }, }
 
 <div id="slideshow-holder"><div id="slideshow-wrapper">
 
-<!-- Slide 1 -->
-<div class="slide-container" id="slide1">
+<!-- Slide 1: Главная -->
+<div class="slide-container active" id="slide1">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
     <div class="title-layout">
-        <h1>Превращаем вашу рутину в
-        <span>цифровой актив</span></h1>
-        <p class="subtitle">Разработка кастомных сайтов и приложений для бизнеса. Вы проходите опрос — мы находим "узкое горлышко" и создаем продукт, который экономит ваше время.</p>
+        <h1>Продуктовая разработка, которая
+        <span>экономит ваши ресурсы</span></h1>
+        <p class="subtitle">От глубокого анализа бизнес-процессов до внедрения кастомных веб-приложений. Мы находим узкие места в вашей рутине и создаем масштабируемые решения на базе современных веб-технологий.</p>
     </div>
 </div>
 
-<!-- Slide 2 -->
+<!-- Slide 2: Продуктовый подход -->
 <div class="slide-container" id="slide2">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
-    <h2 class="slide-title">Как мы создаем решения</h2>
+    <h2 class="slide-title">Методология создания продукта</h2>
     <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                <h3>1. Бриф и Анализ</h3>
-                <p>Вы заполняете удобную форму опроса, описывая задачи, которые отнимают больше всего времени. Мы анализируем процессы и предлагаем концепцию.</p>
+        <div class="grid-cards">
+            <div class="glass-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <h3>1. Продуктовый Анализ</h3>
+                <p>Применяем принципы Product Management. Изучаем ваши бизнес-процессы, собираем требования через бриф и определяем функционал, который даст максимальный ROI.</p>
             </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-code"></i></div>
-                <h3>2. Разработка</h3>
-                <p>Наша команда пишет чистый код и создает интуитивный интерфейс. Мы не используем шаблонные конструкторы — всё пишется индивидуально под вас.</p>
+            <div class="glass-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-object-group"></i></div>
+                <h3>2. UX/UI & Glassmorphism</h3>
+                <p>Проектируем интуитивные интерфейсы. Делаем упор на современную эстетику, читаемость данных и минимизацию кликов для выполнения рутинных задач.</p>
             </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-rocket"></i></div>
-                <h3>3. Готовый Продукт</h3>
-                <p>Вы получаете сайт или приложение, готовое к работе. С первого дня внедрения система начинает экономить ваши часы и ресурсы.</p>
+            <div class="glass-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-code-branch"></i></div>
+                <h3>3. Full-Stack Разработка</h3>
+                <p>Пишем чистый и быстрый код (HTML, CSS, JS). Интегрируем надежные базы данных (Firebase) для мгновенного сохранения информации и безопасного доступа.</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Slide 3 -->
+<!-- Slide 3: Вводная в кейс -->
 <div class="slide-container" id="slide3">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
     <div class="section-title-layout">
         <div class="separator"></div>
-        <h2>От теории к практике:
+        <h2>Цифровая трансформация:
         <span style="color: #ffffff;">Кейс</span> <span>StaroSTATT</span></h2>
-        <p>Показываем на реальном примере, как мы автоматизировали работу старост университетов, сэкономив им десятки часов в месяц.</p>
+        <p>Веб-приложение для мониторинга посещаемости и автоматизации отчетности. Разработано для управления данными сотен участников.</p>
     </div>
 </div>
 
-<!-- Slide 4 -->
-<div class="slide-container bleed-image-layout" id="slide4">
+<!-- Slide 4: Проблема и Решение (Без фото) -->
+<div class="slide-container" id="slide4">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
-    <div class="content-container">
-        <h2 class="slide-title">Рабочее место старосты</h2>
-        <div class="content-area">
-            <div class="bleed-text-side">
-                <p><strong>Проблема:</strong> Ежедневная рутина с бумажными ведомостями, ручной подсчет академических часов, потерянные медицинские справки и сложный сбор статистики в конце месяца.</p>
-                <p><strong>Решение ADAPTiv:</strong> StaroSTATT — веб-приложение, созданное специально для учета посещаемости. Без регистраций, с мгновенным сохранением данных.</p>
+    <h2 class="slide-title">StaroSTATT: От бумаги к цифре</h2>
+    <div class="content-area">
+        <div class="two-column-text">
+            <div class="glass-card" style="border-top: 4px solid #f43f5e;">
+                <h3><i class="fa-solid fa-triangle-exclamation" style="color: #f43f5e; margin-right: 12px;"></i> Узкое горлышко (До)</h3>
+                <p style="margin-bottom: 20px;">Ручная обработка данных отнимала часы рабочего времени еженедельно:</p>
+                <ul>
+                    <li><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Бумажные ведомости легко теряются или портятся.</li>
+                    <li><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Ручной подсчет академических часов и процентов явки.</li>
+                    <li><i class="fa-solid fa-xmark" style="color: #f43f5e;"></i> Сложность контроля долгов и медицинских справок.</li>
+                </ul>
+            </div>
+            <div class="glass-card" style="border-top: 4px solid #10b981;">
+                <h3><i class="fa-solid fa-check-double" style="color: #10b981; margin-right: 12px;"></i> Решение ADAPTiv (После)</h3>
+                <p style="margin-bottom: 20px;">Единое облачное рабочее пространство без сложной регистрации:</p>
+                <ul>
+                    <li><i class="fa-solid fa-check" style="color: #10b981;"></i> Умный календарь с автоматической подстановкой расписания.</li>
+                    <li><i class="fa-solid fa-check" style="color: #10b981;"></i> Массовые отметки группы в один клик.</li>
+                    <li><i class="fa-solid fa-check" style="color: #10b981;"></i> Авто-генерация CSV-отчетов для отправки руководству.</li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="image-container">
-        <!-- ВАЖНО: Замените путь на вашу картинку, когда загрузите на GitHub -->
-        <img class="bleed-image-side" src="./images/main.png" alt="Главная страница StaroSTATT">
-    </div>
 </div>
 
-<!-- Slide 5 -->
+<!-- Slide 5: Технологический стек -->
 <div class="slide-container" id="slide5">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
-    <h2 class="slide-title">Журнал в один клик</h2>
+    <h2 class="slide-title">Архитектура и Технологии</h2>
     <div class="content-area">
-        <div class="two-column">
-            <div>
-                <p style="margin-bottom: 24px; color: #e2e8f0;">Умный интерфейс позволяет отметить группу за несколько секунд:</p>
-                <ul>
-                    <li><i class="fa-solid fa-check"></i> <strong>Умная дата:</strong> Выберите день, и система сама подставит расписание пар.</li>
-                    <li><i class="fa-solid fa-check"></i> <strong>Массовые отметки:</strong> Кнопка "Отметить всех" при 100% явке.</li>
-                    <li><i class="fa-solid fa-check"></i> <strong>Детальный учет:</strong> Фиксация ответов на семинарах и удобные текстовые заметки о долгах для каждого студента.</li>
-                </ul>
-            </div>
-            <div>
-                <div class="image-wrapper">
-                    <!-- ВАЖНО: Замените путь на вашу картинку, когда загрузите на GitHub -->
-                    <img src="./images/journal.png" alt="Интерфейс журнала StaroSTATT">
+        <div class="glass-card" style="width: 100%; padding: 60px;">
+            <p style="font-size: 22px; color: #f8fafc; margin-bottom: 30px;">Система построена на надежном стеке технологий, обеспечивающем высокую скорость отклика и сохранность данных в реальном времени.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div>
+                    <h3 style="font-size: 20px; color: #cbd5e1;"><i class="fa-solid fa-server" style="margin-right: 10px;"></i> Инфраструктура</h3>
+                    <div class="tech-stack">
+                        <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5 & CSS3</span>
+                        <span class="tech-pill"><i class="fa-brands fa-js"></i> JavaScript ES6+</span>
+                        <span class="tech-pill"><i class="fa-solid fa-database"></i> Firebase</span>
+                        <span class="tech-pill"><i class="fa-solid fa-cloud"></i> Cloud Storage</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 20px; color: #cbd5e1;"><i class="fa-solid fa-gears" style="margin-right: 10px;"></i> Функциональные модули</h3>
+                    <ul style="list-style: none; padding-top: 10px;">
+                        <li style="margin-bottom: 12px;"><i class="fa-solid fa-arrow-right" style="color: #38bdf8; margin-right: 10px;"></i> Реал-тайм синхронизация состояния.</li>
+                        <li style="margin-bottom: 12px;"><i class="fa-solid fa-arrow-right" style="color: #38bdf8; margin-right: 10px;"></i> Математический движок расчета статистики.</li>
+                        <li><i class="fa-solid fa-arrow-right" style="color: #38bdf8; margin-right: 10px;"></i> Модуль экспорта таблиц данных (CSV).</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Slide 6 -->
+<!-- Slide 6: Масштаб (Аналитика в цифрах) -->
 <div class="slide-container" id="slide6">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
-    <h2 class="slide-title">Автоматические отчеты</h2>
-    <div class="content-area">
-        <div class="two-column">
-            <div>
-                <div class="image-wrapper">
-                    <!-- ВАЖНО: Замените путь на вашу картинку, когда загрузите на GitHub -->
-                    <img src="./images/reports.png" alt="Интерфейс отчетов StaroSTATT">
-                </div>
-            </div>
-            <div>
-                <p style="margin-bottom: 24px; color: #e2e8f0;">Больше никаких калькуляторов в конце месяца. Система делает всё за вас:</p>
-                <ul>
-                    <li><i class="fa-solid fa-file-export"></i> <strong>Смотр куратора:</strong> Автоматический подсчет академических часов (лекции и семинары).</li>
-                    <li><i class="fa-solid fa-percent"></i> <strong>Точная статистика:</strong> Расчет процентов посещаемости для каждого студента в реальном времени.</li>
-                    <li><i class="fa-solid fa-download"></i> <strong>Выгрузка CSV:</strong> Скачивание готового отчета в один клик для отправки в деканат.</li>
-                </ul>
-            </div>
+    <h2 class="slide-title">Масштаб и Результаты внедрения</h2>
+    <div class="content-area" style="flex-direction: row; gap: 40px; justify-content: space-between;">
+        <div class="glass-card stat-box" style="flex: 1;">
+            <div class="stat-number">360+</div>
+            <div class="stat-label">Участников в системе</div>
+            <p style="margin-top: 16px; font-size: 16px;">Успешная обработка данных для крупных студенческих комьюнити и мероприятий.</p>
+        </div>
+        <div class="glass-card stat-box" style="flex: 1;">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Точность отчетов</div>
+            <p style="margin-top: 16px; font-size: 16px;">Исключение человеческого фактора при расчете академических часов и процентов.</p>
+        </div>
+        <div class="glass-card stat-box" style="flex: 1;">
+            <div class="stat-number">~20ч</div>
+            <div class="stat-label">Сэкономлено в месяц</div>
+            <p style="margin-top: 16px; font-size: 16px;">Время, которое раньше тратилось на рутинное заполнение бумаг и калькуляцию.</p>
         </div>
     </div>
 </div>
 
-<!-- Slide 7 -->
+<!-- Slide 7: Сравнение -->
 <div class="slide-container" id="slide7">
-    <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
-    <h2 class="slide-title">Честно о нашем подходе</h2>
-    <div class="content-area">
-        <div class="two-column tiled">
-            <div>
-                <h3><i class="fa-solid fa-shield-check" style="color: #10b981; margin-right: 10px;"></i> Почему выбирают ADAPTiv</h3>
-                <ul>
-                    <li><i class="fa-solid fa-bullseye"></i> <strong>Точное попадание:</strong> Продукт решают вашу реальную боль, а не абстрактную.</li>
-                    <li><i class="fa-solid fa-palette"></i> <strong>UI/UX Дизайн:</strong> Мы делаем современные и эстетичные интерфейсы (как StaroSTATT).</li>
-                    <li><i class="fa-solid fa-expand"></i> <strong>Масштабируемость:</strong> В кастомный код легко добавить любой новый функционал.</li>
-                </ul>
-            </div>
-            <div>
-                <h3><i class="fa-solid fa-circle-exclamation" style="color: #f43f5e; margin-right: 10px;"></i> Ограничения формата</h3>
-                <ul>
-                    <li><i class="fa-solid fa-clock"></i> <strong>Время создания:</strong> Разработка с нуля занимает больше времени, чем покупка готового шаблона.</li>
-                    <li><i class="fa-solid fa-users"></i> <strong>Ваше участие:</strong> Нам необходимо ваше время на этапе заполнения брифа и согласования логики.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Slide 8 -->
-<div class="slide-container" id="slide8">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
     <h2 class="slide-title">Сравнение с конкурентами</h2>
     <div class="content-area">
@@ -657,33 +423,33 @@ tailwind.config = { darkMode: 'class', corePlugins: { preflight: false, }, }
                         <th>Критерий</th>
                         <th class="highlight-col">ADAPTiv</th>
                         <th>Готовые CRM / SaaS</th>
-                        <th>Фрилансеры</th>
+                        <th>Шаблонные конструкторы</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>Погружение в вашу работу</strong></td>
-                        <td class="highlight-col">Глубокое (через бриф-опрос)</td>
-                        <td>Отсутствует (шаблонно)</td>
+                        <td class="highlight-col">Глубокое (продуктовый анализ)</td>
+                        <td>Отсутствует (стандартно)</td>
                         <td>Зависит от вашего ТЗ</td>
                     </tr>
                     <tr>
-                        <td><strong>Индивидуальность решения</strong></td>
+                        <td><strong>Индивидуальность логики</strong></td>
                         <td class="highlight-col">100% под ваши процессы</td>
-                        <td>Ограничена настройками</td>
-                        <td>В рамках навыков исполнителя</td>
+                        <td>Ограничена настройками системы</td>
+                        <td>Жесткие рамки шаблонов</td>
                     </tr>
                     <tr>
                         <td><strong>Дизайн и Удобство (UX)</strong></td>
-                        <td class="highlight-col">Премиум, интуитивный</td>
-                        <td>Универсальный, перегруженный</td>
-                        <td>Часто страдает</td>
+                        <td class="highlight-col">Стекломорфизм, интуитивность</td>
+                        <td>Перегруженные интерфейсы</td>
+                        <td>Типичный, "как у всех"</td>
                     </tr>
                     <tr>
-                        <td><strong>Экономия времени (ROI)</strong></td>
-                        <td class="highlight-col">Максимальная</td>
-                        <td>Средняя</td>
-                        <td>Непредсказуемая</td>
+                        <td><strong>Масштабируемость</strong></td>
+                        <td class="highlight-col">Кастомный код (JS, Firebase)</td>
+                        <td>Дорогие тарифы за интеграции</td>
+                        <td>Сильно ограничена</td>
                     </tr>
                 </tbody>
             </table>
@@ -691,24 +457,29 @@ tailwind.config = { darkMode: 'class', corePlugins: { preflight: false, }, }
     </div>
 </div>
 
-<!-- Slide 9: КОНВЕРСИОННЫЙ СЛАЙД (ЛИД-МАГНИТ) -->
-<div class="slide-container" id="slide9">
+<!-- Slide 8: QR КОД И КОНТАКТЫ -->
+<div class="slide-container" id="slide8">
     <div class="slide-logo"><i class="fa-solid fa-layer-group"></i> ADAPT<span>iv</span></div>
     
-    <div class="qa-layout">
-        <h2>Готовы к изменениям?</h2>
-        <p>Получите <strong>бесплатный аудит</strong> ваших рутинных процессов.<br>Оставьте контакты, и мы найдем, где вы теряете время.</p>
-        
-        <!-- Блок формы захвата -->
-        <div class="lead-form-box">
-            <div class="input-group">
-                <input type="text" placeholder="Ваше имя" required>
-                <input type="text" placeholder="Telegram или Телефон" required>
+    <div class="content-area">
+        <div class="final-slide-layout">
+            <div>
+                <h2 style="font-size: 64px; margin-bottom: 24px;">Готовы оцифровать <br><span class="text-gradient">свою рутину?</span></h2>
+                <p style="font-size: 22px; color: #cbd5e1; margin-bottom: 40px; max-width: 600px;">
+                    Пройдите короткий опрос-бриф. Мы проанализируем ваши текущие процессы и предложим архитектуру приложения, которое возьмет рутину на себя.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 40px;">
+                    <li style="margin-bottom: 16px; font-size: 20px; color: #f8fafc;"><i class="fa-solid fa-bolt" style="color: #38bdf8; margin-right: 12px;"></i> Бесплатный аудит процессов</li>
+                    <li style="margin-bottom: 16px; font-size: 20px; color: #f8fafc;"><i class="fa-solid fa-pen-nib" style="color: #38bdf8; margin-right: 12px;"></i> Концепт дизайна интерфейса</li>
+                </ul>
             </div>
-            <!-- Сюда в будущем можно повесить отправку формы -->
-            <button class="contact-info">
-                Получить аудит <i class="fa-solid fa-paper-plane" style="margin-left: 12px;"></i>
-            </button>
+            
+            <!-- Блок с QR-кодом -->
+            <div class="qr-container">
+                <!-- Вшитый QR код согласно предоставленному имени файла[span_0](start_span)[span_0](end_span) -->
+                <img class="qr-image" src="70CDA78D-44B9-4C90-B0EE-958D5BAE0E5F.png" alt="QR код для связи">
+                <p class="qr-text">Наведите камеру смартфона,<br>чтобы открыть опрос</p>
+            </div>
         </div>
     </div>
 </div>
@@ -716,7 +487,6 @@ tailwind.config = { darkMode: 'class', corePlugins: { preflight: false, }, }
 </div></div>
 
 <script>
-// ОСНОВНАЯ ЛОГИКА СЛАЙДЕРА (КОД ОЧИЩЕН ОТ ЛИШНЕГО)
 function initializeSlideshowUi() {
     const slides = document.querySelectorAll('.slide-container');
     const prevButton = document.getElementById('prev-slide');
@@ -733,52 +503,26 @@ function initializeSlideshowUi() {
         slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
     }
 
-    function showNextSlide() {
-        if (currentSlide < slides.length - 1) {
-            currentSlide++;
-            updateUi();
-        }
-    }
-
-    function showPrevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-            updateUi();
-        }
-    }
+    function showNextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateUi(); } }
+    function showPrevSlide() { if (currentSlide > 0) { currentSlide--; updateUi(); } }
 
     nextButton.addEventListener('click', showNextSlide);
     prevButton.addEventListener('click', showPrevSlide);
     
-    // Переключение стрелочками на клавиатуре
     document.addEventListener('keydown', (e) => {
-        const el = e.target;
-        // Не переключать слайды, если пользователь вводит текст в форму на последнем слайде
-        if (el.isContentEditable || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            return;
-        }
-        if (e.key === 'ArrowRight') {
-            showNextSlide();
-        } else if (e.key === 'ArrowLeft') {
-            showPrevSlide();
-        }
+        if (e.key === 'ArrowRight') showNextSlide();
+        else if (e.key === 'ArrowLeft') showPrevSlide();
     });
 
-    // Функция масштабирования под любой экран
     function updateScale() {
         const baseWidth = 1280;
         const baseHeight = 720;
         const slideshowWrapper = document.getElementById('slideshow-wrapper');
         const slideshowHolder = document.getElementById('slideshow-holder');
-
-        const availableWidth = slideshowHolder.clientWidth;
-        const availableHeight = slideshowHolder.clientHeight;
-
-        const scaleX = availableWidth / baseWidth;
-        const scaleY = availableHeight / baseHeight;
-        const finalScale = Math.min(scaleX, scaleY);
-
-        slideshowWrapper.style.setProperty('--scale-factor', finalScale);
+        
+        const scaleX = slideshowHolder.clientWidth / baseWidth;
+        const scaleY = slideshowHolder.clientHeight / baseHeight;
+        slideshowWrapper.style.setProperty('--scale-factor', Math.min(scaleX, scaleY));
     }
 
     updateUi();
@@ -787,4 +531,6 @@ function initializeSlideshowUi() {
 }
 
 document.addEventListener('DOMContentLoaded', initializeSlideshowUi);
-</script></body></html>
+</script>
+</body>
+</html>
